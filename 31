@@ -1,0 +1,23 @@
+ static const unsigned N = 1500;
+  static double value[N] = { 0., 1. };
+  // Признак того, что значение уже вычисленно и надо извлечь его из таблицы value.
+  static bool stored[N] = { true, true };
+
+  if (N <= n)
+    return HUGE_VAL;
+  
+  if (stored[n]) // уже посчитано?
+    return value[n]; // да -- вернуть сохранённое
+  // ещё не посчитано -- посчитать по определению, сохранить и вернуть:
+  stored[n] = true;
+  return value[n] = fib(n - 1) + fib(n - 2);
+}
+
+
+#include <iostream>
+int main()
+{
+  for (unsigned n; std::cin >> n;)
+    std::cout << fib(n) << std::endl;
+  return EXIT_SUCCESS;
+}
